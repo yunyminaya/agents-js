@@ -1,5 +1,29 @@
 # @livekit/agents
 
+## 1.7.2
+
+### Patch Changes
+
+- Handle microphone track replacement for an existing RoomIO publication. - [#2363](https://github.com/livekit/agents-js/pull/2363) ([@rosetta-livekit-bot](https://github.com/apps/rosetta-livekit-bot))
+
+- Retry connection pool prewarming after a previous attempt fails or completes. - [#2378](https://github.com/livekit/agents-js/pull/2378) ([@rosetta-livekit-bot](https://github.com/apps/rosetta-livekit-bot))
+
+- fix(voice): cancel a parked preemptive generation when pausing speech scheduling so agent handoffs cannot deadlock - [#2398](https://github.com/livekit/agents-js/pull/2398) ([@rosetta-livekit-bot](https://github.com/apps/rosetta-livekit-bot))
+
+- fix(voice): cancel a speech that `scheduleSpeech` refuses while scheduling is paused, so its speech task does not stay parked and block the next `drain()`/`pause()` and `AgentSession.close()` - [#2372](https://github.com/livekit/agents-js/pull/2372) ([@chenghao-mou](https://github.com/chenghao-mou))
+
+- Preserve wired VAD speech-end anchors when reporting transcription delay, expose absolute STT speech-end timing, and restore default-VAD speaking state for false-interruption recovery. - [#2382](https://github.com/livekit/agents-js/pull/2382) ([@rosetta-livekit-bot](https://github.com/apps/rosetta-livekit-bot))
+
+- Preserve non-ASCII characters in pretty logs on Windows terminals. - [#2367](https://github.com/livekit/agents-js/pull/2367) ([@chenghao-mou](https://github.com/chenghao-mou))
+
+- Redact API keys from rejected WebSocket handshake errors. - [#2379](https://github.com/livekit/agents-js/pull/2379) ([@rosetta-livekit-bot](https://github.com/apps/rosetta-livekit-bot))
+
+- Fix `WarmTransferTask` hanging after a failed participant move when the human agent disconnects. - [#2361](https://github.com/livekit/agents-js/pull/2361) ([@chenghao-mou](https://github.com/chenghao-mou))
+
+- Support Mistral Conversations requests when the chat context ends with an assistant message. - [#2376](https://github.com/livekit/agents-js/pull/2376) ([@rosetta-livekit-bot](https://github.com/apps/rosetta-livekit-bot))
+
+- RoomIO now preserves a pre-set `session.input.audio` and `session.output.transcription` instead of silently replacing them, matching the existing behavior for `session.output.audio` and the python implementation. - [#2296](https://github.com/livekit/agents-js/pull/2296) ([@1egoman](https://github.com/1egoman))
+
 ## 1.7.1
 
 ### Patch Changes

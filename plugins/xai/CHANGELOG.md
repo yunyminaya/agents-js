@@ -1,5 +1,15 @@
 # @livekit/agents-plugin-xai
 
+## 1.7.2
+
+### Patch Changes
+
+- Redact API keys from rejected WebSocket handshake errors. - [#2379](https://github.com/livekit/agents-js/pull/2379) ([@rosetta-livekit-bot](https://github.com/apps/rosetta-livekit-bot))
+
+- Updated dependencies [[`38243d9`](https://github.com/livekit/agents-js/commit/38243d90464519808ce7ce021642d2837c69a923), [`ba4a502`](https://github.com/livekit/agents-js/commit/ba4a5027df32c413e45966f353ece17eeb3d8d0c), [`30dbde5`](https://github.com/livekit/agents-js/commit/30dbde5f67204af045c989ed3a6f03c73e854234), [`0d9e641`](https://github.com/livekit/agents-js/commit/0d9e6416674c38cbf7737f20312bd37c867fa54d), [`080db3e`](https://github.com/livekit/agents-js/commit/080db3e5a0ac13de00d30e4dd11ff4b2ae5fbd90), [`a001e13`](https://github.com/livekit/agents-js/commit/a001e13fa679f93060e06552a4e349e638207231), [`1cf5cdd`](https://github.com/livekit/agents-js/commit/1cf5cdd4d44e9a31b7b27640fe494813c4e90a2a), [`380b4d2`](https://github.com/livekit/agents-js/commit/380b4d2c5fc02ad1f9232c78fc870473ffbddb8a), [`c5a205b`](https://github.com/livekit/agents-js/commit/c5a205b854e8224f8ab71373cf51bf100bcfe2a1), [`128f3f6`](https://github.com/livekit/agents-js/commit/128f3f6a230616e960325b112067861ce1f1a17f), [`ac882c0`](https://github.com/livekit/agents-js/commit/ac882c0ca2dcc7cdb39994a5443a82bc01dd3732), [`2895612`](https://github.com/livekit/agents-js/commit/28956128d8bcb8c8fac8d53dbd1afcf3e114fa6e)]:
+  - @livekit/agents@1.7.2
+  - @livekit/agents-plugin-openai@1.7.2
+
 ## 1.7.1
 
 ### Patch Changes
