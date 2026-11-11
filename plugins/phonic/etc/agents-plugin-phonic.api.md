@@ -24,6 +24,7 @@ import { RemoteParticipant } from '@livekit/rtc-node';
 import { Room } from '@livekit/rtc-node';
 import type { Span } from '@opentelemetry/api';
 import type { TextStreamInfo } from '@livekit/rtc-node';
+import { Throws } from '@livekit/throws-transformer/throws';
 import { ThrowsPromise } from '@livekit/throws-transformer/throws';
 import { TrackPublishOptions } from '@livekit/rtc-node';
 import { TransformStream as TransformStream_2 } from 'node:stream/web';
@@ -35,7 +36,7 @@ import { z } from 'zod';
 // Warning: (ae-missing-release-tag) "PhonicConfig" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public
-type PhonicConfig = Partial<Omit<RealtimeModelOptions, 'apiKey' | 'model' | 'connOptions' | 'baseUrl' | 'instructions'>>;
+type PhonicConfig = Partial<Omit<RealtimeModelOptions, 'apiKey' | 'model' | 'connOptions' | 'baseUrl' | 'externalId' | 'instructions'>>;
 
 // Warning: (ae-missing-release-tag) "PhonicToolConfig" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
@@ -61,6 +62,7 @@ declare namespace realtime {
         RealtimeModelOptions,
         PhonicToolConfig,
         PhonicConfig,
+        toPhonicToolDefinitions,
         Voice
     }
 }
@@ -90,6 +92,7 @@ class RealtimeModel extends llm.RealtimeModel {
         noInputPokeSec?: number;
         noInputPokeText?: string;
         noInputEndConversationSec?: number;
+        phonicModel?: 'phonic_v0_5' | 'phonic_v1' | 'phonic_v1_1';
         websocketTimeoutSec?: number;
         intelligenceLevel?: Phonic.ConfigOptions['intelligence_level'];
         isWelcomeMessageInterruptible?: boolean;
@@ -106,6 +109,7 @@ class RealtimeModel extends llm.RealtimeModel {
         observabilityIntegrations?: Phonic.ConfigOptions['observability_integrations'];
         configurationEndpoint?: Phonic.ConfigOptions['configuration_endpoint'];
         additionalParams?: NonNullable<Phonic.ConfigOptions['additional_params']>;
+        externalId?: string;
         configsForTools?: PhonicToolConfig[];
         forbidSpeechAfterToolCall?: string[];
         onConversationCreated?: (conversationId: string) => void;
@@ -126,7 +130,7 @@ class RealtimeModel extends llm.RealtimeModel {
     _options: RealtimeModelOptions;
     // (undocumented)
     get provider(): string;
-    session(): RealtimeSession_2;
+    session(options?: llm.RealtimeSessionOptions): RealtimeSession_2;
     updateOptions(config: PhonicConfig): void;
 }
 
@@ -160,6 +164,8 @@ interface RealtimeModelOptions {
     enableAssistantBackchannel?: boolean;
     // (undocumented)
     enableRedaction?: boolean;
+    // (undocumented)
+    externalId?: string;
     // @deprecated (undocumented)
     forbidSpeechAfterToolCall?: string[];
     // (undocumented)
@@ -192,6 +198,8 @@ interface RealtimeModelOptions {
     // (undocumented)
     phonicAgent?: string;
     // (undocumented)
+    phonicModel?: 'phonic_v0_5' | 'phonic_v1' | 'phonic_v1_1';
+    // (undocumented)
     phonicTools?: string[];
     // (undocumented)
     project?: string;
@@ -215,6 +223,11 @@ interface RealtimeModelOptions {
     welcomeMessage?: string;
 }
 
+// Warning: (ae-missing-release-tag) "toPhonicToolDefinitions" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public
+function toPhonicToolDefinitions(toolContext: llm.ToolContext): Phonic.ResponsesToolDefinition[];
+
 // Warning: (ae-missing-release-tag) "Voice" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
@@ -222,7 +235,7 @@ type Voice = 'sabrina' | 'grant' | 'virginia' | 'landon' | 'eleanor' | 'shelby' 
 
 // Warnings were encountered during analysis:
 //
-// src/realtime/realtime_model.ts:294:7 - (ae-forgotten-export) The symbol "APIConnectOptions" needs to be exported by the entry point index.d.ts
+// src/realtime/realtime_model.ts:314:7 - (ae-forgotten-export) The symbol "APIConnectOptions" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
